@@ -10,7 +10,7 @@ RSpec.describe Genre, type: :model do
       @author = Author.create(name: "Stephen King")
       @genre = Genre.create(title: "Fiction")
       @author2 = Author.create(name: "Tom Jerry")
-      @post_tom = Genre.create(title: "Fiction")
+      @genre_2 = Genre.create(title: "Fiction")
     end
   end
 
