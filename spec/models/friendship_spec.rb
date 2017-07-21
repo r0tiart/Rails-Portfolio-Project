@@ -9,10 +9,11 @@ RSpec.describe Friendship, type: :model do
     end
 
     it 'has a status for requested by default' do
-    	@user.friends << @user2
-    	expect(@user.friends.status).to eq("pending")
+
+    	@user.friends.create(friend_id: @user2.friend_id)
+    	expect(@user.friendships.first.status).to eq("pending")
     end
 
-  
+
   end
 end

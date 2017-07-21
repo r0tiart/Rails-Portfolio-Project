@@ -36,15 +36,16 @@ RSpec.describe Book, type: :model do
 
     describe "#friend_request=(user)" do #submit friend request - initial friendship status should = pending by default
       it 'creates a friendship line with status of pending' do
+
         @user2.friend_request=(@user)
-        expect(@user.friends.status).to eq("pending")
+        expect(@user2.friendships.last.status).to eq("pending")
       end
     end
 
     describe "#friend_requests" do  #shows all pending friend request - using a search by your friend ID and status = "pending"
       it "lists all friend requests (status = pending)" do  
-        @user2.friend_request(@user)
-        expect(@user2.friend_requests.count).to eq(1)
+        @user2.friend_request=(@user)
+        expect(@user.friend_requests.count).to eq(1)
       end
     end
 
