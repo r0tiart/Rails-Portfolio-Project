@@ -27,19 +27,17 @@
 			belongs_to :author
 			belongs_to :genre
 
-	d) Authors
+	d) Authors (completed)
 			-name
 
 			has_many :books
-			has_many :genres, through: :books
-			has_many :users, through: :books
-
-	e) Genre
+			has_many :genres, through: :books (uniq values only)
+ 
+	e) Genre (completed)
 			-name
 
 			has_many :books
-			has_many :authors, through: :books
-			has_many :users, through: books
+			has_many :authors, through: :books (unique values)
 
 	f) UserBooks
 			user_id
