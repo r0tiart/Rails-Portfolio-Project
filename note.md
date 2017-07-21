@@ -18,9 +18,9 @@
 			belongs_to :friend, :foreign_key => "friend_id", :class_name => "User"  
 
 	c) Books
-			-title
-			-author_id
-			-genre_id
+			-title (done)
+			-author_id (done)
+			-genre_id (done)
 			-user_id
 
 			has_many :user_books
