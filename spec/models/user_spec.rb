@@ -49,9 +49,9 @@ RSpec.describe Book, type: :model do
       end
     end
 
-    describe '#accept_friend_request' do #accepts the request - which should change friendship status to "friends"
+    describe '#accept_friend_request(user)' do #accepts the request - which should change friendship status to "friends"
       it "changings friendhip.status = friends" do  
-        @user2.friend_request(@user)
+        @user2.friend_request=(@user)
         @user.accept_friend_request(@user2)
         expect(@user.friends.count).to eq(1)
       end
