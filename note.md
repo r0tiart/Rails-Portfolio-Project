@@ -18,7 +18,7 @@
 			belongs_to :user, :foreign_key => "user_id", :class_name => "User"
 			belongs_to :friend, :foreign_key => "friend_id", :class_name => "User"  
 
-	c) Books
+	c) Books (completed)
 			-title (done)
 			-author_id (done)
 			-genre_id (done)
