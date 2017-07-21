@@ -1,16 +1,17 @@
 1) Create Migrations: 
-	a) User: - email
+	a) User: - email - neeed to write tests
 			 - password digest (bcrypt)
 			 - username
 			 - friend_id
 			 has_many :friendships, :foreign_key => "user_id", :class_name => "Friendships"
 			 has_many :friends, :through => :friendships
 
+			 #mental note - I can list all users that friended you, but do i allow users to see info if the friend has not been reflected ie. user_id: 1 friend_id: 2 & user_id: 2 friend_id: 1 are friends - this is a coexisting friend.
 
 			 has_many :user_books
 			 has_many :books, through: :user_books
 
-	b) Friendships
+	b) Friendships - need to write tests
 			- user_id
 			- friend_id
 

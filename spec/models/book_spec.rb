@@ -8,8 +8,11 @@ RSpec.describe Book, type: :model do
       Book.destroy_all
 
       @book = Book.create(title: "It")
-      # @author = Author.create(name: "Stephen King")
+      @author = Author.create(name: "Stephen King")
       @genre = Genre.create(title: "Fiction")
+      @book.genre = @genre
+      @book.author = @author
+      @book.save
     end
   
 
@@ -20,8 +23,21 @@ RSpec.describe Book, type: :model do
     end
 
     it "belongs to a genre" do
-      @book.genre = @genre 
       expect(@book.genre).to eq(@genre)
+    end
+
+    it "belongs to a author" do
+      expect(@book.author).to eq(@author)
+    end
+
+    it "has many users" do 
+      @user = User.create(username: "user1", password: "password")
+      @user2 = User.create(username: "user2", password: "password")
+      @user.books << @book 
+      @user2.books << @book
+      @user.save
+      @user2.save
+      expect(@book.users.count).to eq(2)
     end
   end
 end
