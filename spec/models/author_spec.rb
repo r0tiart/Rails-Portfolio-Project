@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Genre, type: :model do
+RSpec.describe Author, type: :model do
   describe "class methods" do
     before do
       Author.destroy_all
@@ -10,20 +10,22 @@ RSpec.describe Genre, type: :model do
       @author = Author.create(name: "Stephen King")
       @genre = Genre.create(title: "Fiction")
       @book = Book.create(title:"It")
+
+
     end
   
 
-    it "has a title" do
-      expect(@genre.title).to eq("Fiction")
+    it "has a name" do
+      expect(@author.name).to eq("Stephen King")
     end
 
     it "has many books" do
       @genre.books << @book
       @author.books << @book
-      @book2 = @genre.books.create(title: "Carrie")
-      @book2.author = @author
-      @genre.save
-     expect(@genre.books.count).to eq(2)
+      @book2 = @author.books.create(title: "Carrie")
+      @book2.genre = @genre
+      @author.save
+     expect(@author.books.count).to eq(2)
     end
   end
 end
