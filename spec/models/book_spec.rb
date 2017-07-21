@@ -20,7 +20,6 @@ RSpec.describe Book, type: :model do
     end
 
     it "belongs to a genre" do
-
       @book.genre = @genre 
       expect(@book.genre).to eq(@genre)
     end

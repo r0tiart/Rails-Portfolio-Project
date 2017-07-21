@@ -7,9 +7,8 @@
 			 has_many :friends, :through => :friendships
 
 
-			 has_many :books
-			 has_many :authors, through: :books
-			 has_many :genres, through: :books
+			 has_many :user_books
+			 has_many :books, through: :user_books
 
 	b) Friendships
 			- user_id
@@ -24,7 +23,7 @@
 			-genre_id
 			-user_id
 
-			belongs_to :user
+			has_many :user_books
 			belongs_to :author
 			belongs_to :genre
 
@@ -41,6 +40,13 @@
 			has_many :books
 			has_many :authors, through: :books
 			has_many :users, through: books
+
+	f) UserBooks
+			user_id
+			boo_id
+
+			belongs_to :user
+			belongs_to :user_books
 
 			 
 			 
