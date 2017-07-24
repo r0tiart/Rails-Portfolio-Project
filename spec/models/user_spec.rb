@@ -38,7 +38,7 @@ RSpec.describe Book, type: :model do
       it 'creates a friendship line with status of pending' do
 
         @user2.friend_request=(@user)
-        expect(@user2.friendships.last.status).to eq("pending")
+        expect(Friendship.last.status).to eq("pending")
       end
     end
 
@@ -54,6 +54,7 @@ RSpec.describe Book, type: :model do
         @user2.friend_request=(@user)
         @user.accept_friend_request(@user2)
         expect(@user.friends.count).to eq(1)
+        expect(@user2.friends.count).to eq(1)
       end
     end
   end

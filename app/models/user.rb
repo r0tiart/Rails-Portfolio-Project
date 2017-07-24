@@ -1,8 +1,8 @@
 class User < ApplicationRecord
 	has_many :user_books
 	has_many :books, through: :user_books
-	has_many :friendships, :foreign_key => "user_id", :class_name => "Friendship"
-	has_many :friends, -> {where(friendships: {status: "friends"})},:through => :friendships
+	has_many :friendships, -> { Friendship.accepted }, :foreign_key => "user_id", :class_name => "Friendship"
+	has_many :friends, :through => :friendships
 
 
 	has_secure_password
@@ -11,23 +11,19 @@ class User < ApplicationRecord
 
 	def friend_request=(user)
 		if User.all.include?(user)
-			self.friend_ids=(user.friend_id) 
-			friendship = self.friendships.where(friend_id: user.friend_id).first
-			friendship.status = "pending"
-			friendship.save
-			self.save
+			Friendship.friend_request(self, user)
 		end
 	end
 
 	def friend_requests
-		Friendship.where(friend_id: self.friend_id, status: "pending")	
+		Friendship.requests(self)
 	end
 
 	def accept_friend_request(user)
-		friend = Friendship.where(friend_id: self.friend_id, user_id: user.id, status: "pending").first
-		add_friend(user)
-		friend.status = "friends"
-		self.save
+
+		if User.all.include?(user)
+			Friendship.accept_request(user, self)
+		end
 	end
 
 	private
@@ -38,14 +34,5 @@ class User < ApplicationRecord
   		else
   			self.friend_id = 1
   		end
-	end
-
-	def add_friend(user)
-		if User.all.include?(user)
-			self.friend_ids=(user.friend_id) 
-			friendship = self.friendships.where(friend_id: user.friend_id).first
-			friendship.status = "friends"
-			self.save
-		end
 	end
 end
