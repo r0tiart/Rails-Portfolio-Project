@@ -1,8 +1,9 @@
 class User < ApplicationRecord
 	has_many :user_books
 	has_many :books, through: :user_books
-	has_many :friendships, -> { Friendship.accepted }, :foreign_key => "user_id", :class_name => "Friendship"
-	has_many :friends, :through => :friendships
+	has_many :friendships
+	# , :foreign_key => "user_id", :class_name => "Friendship"
+	has_many :friends,  -> { Friendship.accepted }, :through => :friendships
 
 
 	has_secure_password
@@ -19,10 +20,16 @@ class User < ApplicationRecord
 		Friendship.requests(self)
 	end
 
+	def pending_requests
+		Friendship.pending_requests(self)
+	end
+
 	def accept_friend_request(user)
 
 		if User.all.include?(user)
 			Friendship.accept_request(user, self)
+			user.save
+			self.save
 		end
 	end
 
