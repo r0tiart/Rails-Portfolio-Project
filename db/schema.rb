@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170721125905) do
+ActiveRecord::Schema.define(version: 20170724183328) do
 
   create_table "authors", force: :cascade do |t|
     t.string "name"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20170721125905) do
     t.integer "genre_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "page", default: "1"
   end
 
   create_table "friendships", force: :cascade do |t|

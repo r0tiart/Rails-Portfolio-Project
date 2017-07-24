@@ -39,5 +39,9 @@ RSpec.describe Book, type: :model do
       @user2.save
       expect(@book.users.count).to eq(2)
     end
+
+    it "starts on page one" do
+      expect(@book.page).to eq("1")
+    end
   end
 end
