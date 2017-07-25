@@ -1,0 +1,9 @@
+<h3>Sign In Below: </h3>
+
+<%= form_tag(sessions_path, method: "post") do %> 
+	<%= label_tag "user[username]", "Username: " %> 
+	<%= text_field_tag "user[username]"%> <br>
+	<%= label_tag "user[password]", "Password: " %>
+	<%= password_field_tag "user[password]" %><br>
+	<%= submit_tag "Sign In" %>
+<% end %>

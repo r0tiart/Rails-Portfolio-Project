@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
 
 	def index
+		@user = User.all
 	end
 
 	def new
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
 			session[:user_id] = @user.id
 			redirect_to user_path(@user)
 		else
-			flash[:alert] = "There are some errors creating the user"
+			flash[:alert]
 			render "/users/new"
 		end
 	end
@@ -38,7 +39,7 @@ class UsersController < ApplicationController
   	def require_login
 	    unless logged_in?
 	      flash[:error] = "You must be logged in to access this section"
-	      redirect_to new_login_url # halts request cycle
+	      redirect_to root_path # halts request cycle
     	end
     end
 end

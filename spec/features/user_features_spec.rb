@@ -25,12 +25,22 @@ describe 'Feature Test: User', :type => :feature do
 	    click_button('Create User')
 
 	    expect(page.get_rack_session_key('user_id')).to_not be_nil
-  end
+  	end
 
-	  it "on log in, successfully adds a session hash" do
+	it "on log in, successfully adds a session hash" do
 	    visit "/"
 	    click_link('Log In')
 	    expect(page.get_rack_session_key('user_id')).to_not be_nil
-	  end
+	end
+
+	it 'prevents user from viewing user show page and redirects to home page if not logged in' do
+	    @user = User.create(
+	      username: "user",
+	      password: "password",
+	    )
+	    visit '/users/1'
+	    expect(current_path).to eq('/')
+	    expect(page).to have_content("Sign Up")
+	end
   
 end
