@@ -28,8 +28,16 @@ describe 'Feature Test: User', :type => :feature do
   	end
 
 	it "on log in, successfully adds a session hash" do
+		@user = User.create(
+	      username: "user",
+	      password: "password",
+	    )
 	    visit "/"
 	    click_link('Log In')
+
+	    fill_in("user[username]", :with => "user")
+	    fill_in("user[password]", :with => "password")
+	    click_button('Sign In')
 	    expect(page.get_rack_session_key('user_id')).to_not be_nil
 	end
 
