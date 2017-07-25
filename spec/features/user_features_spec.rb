@@ -50,5 +50,38 @@ describe 'Feature Test: User', :type => :feature do
 	    expect(current_path).to eq('/')
 	    expect(page).to have_content("Sign Up")
 	end
-  
+end
+
+
+describe 'Feature Test: User Signout', :type => :feature do
+
+  it 'has a link to log out from the users/show page' do
+    visit '/'
+	click_link('Sign Up')
+    fill_in("user[username]", :with => "Amy Poehler")
+    fill_in("user[password]", :with => "password")
+    click_button('Create User')
+    
+    expect(page).to have_content("Log Out")
+  end
+
+  it 'redirects to home page after logging out' do
+    visit '/'
+	click_link('Sign Up')
+    fill_in("user[username]", :with => "Amy Poehler")
+    fill_in("user[password]", :with => "password")
+    click_button('Create User')
+    click_link("Log Out")
+    expect(current_path).to eq('/')
+  end
+
+  it "successfully destroys session hash when 'Log Out' is clicked" do
+    visit '/'
+	click_link('Sign Up')
+    fill_in("user[username]", :with => "Amy Poehler")
+    fill_in("user[password]", :with => "password")
+    click_button('Create User')
+    click_link("Log Out")
+    expect(page.get_rack_session).to_not include("user_id")
+  end
 end
