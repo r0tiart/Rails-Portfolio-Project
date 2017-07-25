@@ -1,10 +1,17 @@
 class UsersController < ApplicationController
+	before_action :require_login
+	skip_before_action :require_login, only: [:new, :create]
+
 
 	def index
 	end
 
 	def new
-		@user = User.new
+		if logged_in?
+			redirect_to user_path(current_user)
+		else
+			@user = User.new
+		end
 	end
 
 	def create
@@ -21,11 +28,17 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find_by(id: session[:user_id])
-		raise current_user.inspect
 	end
 
 	private
 	def user_params
 		params.require(:user).permit(:username, :password)
 	end
+
+  	def require_login
+	    unless logged_in?
+	      flash[:error] = "You must be logged in to access this section"
+	      redirect_to new_login_url # halts request cycle
+    	end
+    end
 end
