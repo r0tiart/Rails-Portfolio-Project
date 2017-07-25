@@ -1,5 +1,6 @@
 <h3>Sign In Below: </h3>
 
+<%= flash[:alert] if !!flash[:alert] %>
 <%= form_tag(sessions_path, method: "post") do %> 
 	<%= label_tag "user[username]", "Username: " %> 
 	<%= text_field_tag "user[username]"%> <br>

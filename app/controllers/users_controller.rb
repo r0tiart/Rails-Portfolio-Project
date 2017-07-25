@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
 
 	def index
-		@user = User.all
+		@user = User.all	
 	end
 
 	def new
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 			redirect_to user_path(@user)
 		else
 			flash[:alert]
-			render "/users/new"
+			render :new
 		end
 	end
 
