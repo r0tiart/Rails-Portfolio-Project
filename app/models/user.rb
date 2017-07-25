@@ -6,6 +6,7 @@ class User < ApplicationRecord
 	has_many :friends,  -> { Friendship.accepted }, :through => :friendships
 
 	validates :username, uniqueness: { case_sensitive: false }
+	validates :username, presence: true
 	has_secure_password
 
 	before_create :set_friend_id
