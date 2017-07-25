@@ -26,5 +26,11 @@ describe 'Feature Test: User', :type => :feature do
 
 	    expect(page.get_rack_session_key('user_id')).to_not be_nil
   end
+
+	  it "on log in, successfully adds a session hash" do
+	    visit "/"
+	    user_login
+	    expect(page.get_rack_session_key('user_id')).to_not be_nil
+	  end
   
 end
