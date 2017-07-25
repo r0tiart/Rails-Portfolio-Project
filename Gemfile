@@ -39,6 +39,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'pry-rails'
+  gem "rack_session_access"
+
 
 end
 

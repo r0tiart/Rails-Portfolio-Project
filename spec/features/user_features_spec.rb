@@ -15,5 +15,16 @@ describe 'Feature Test: User', :type => :feature do
 	    expect(current_path).to eq('/users/1')
 	    expect(page).to have_content("Amy Poehler")
 	end
+
+	it "on sign up, successfully adds a session hash" do
+		visit '/'
+	    click_link('Sign Up')
+
+    	fill_in("user[username]", :with => "Amy Poehler")
+	    fill_in("user[password]", :with => "password")
+	    click_button('Create User')
+
+	    expect(page.get_rack_session_key('user_id')).to_not be_nil
+  end
   
 end
