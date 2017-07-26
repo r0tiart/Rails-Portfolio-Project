@@ -50,6 +50,30 @@ describe 'Feature Test: User', :type => :feature do
 	    expect(current_path).to eq('/')
 	    expect(page).to have_content("Sign Up")
 	end
+
+	it "on log in, successfully adds a session hash" do
+		@user = User.create(
+	      username: "user",
+	      password: "password",
+	    )
+
+	    @book = Book.create(title: "book1")
+	    @author = Author.create(name: "author1")
+	    @genre = Genre.create(title: "genre1")
+	    @book.author = @author
+	    @book.genre = @genre
+		@book.save
+
+		@user.user_books.create(book_id: @book.id)
+
+	    visit "/"
+	    click_link('Log In')
+
+	    fill_in("user[username]", :with => "user")
+	    fill_in("user[password]", :with => "password")
+	    click_button('Sign In')
+	    expect(page).to have_content(@book.title.titleize)
+	end
 end
 
 
