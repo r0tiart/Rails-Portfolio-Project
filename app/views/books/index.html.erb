@@ -2,8 +2,8 @@
 
 <ul>
 	<% @books.each do |book| %>
-		<li><%= "#{book.title.titleize} by, #{book.author.name.titleize} " %>
-			<%= link_to("Add Book", new_book_path) if logged_in? %>
+		<li><%= "#{book.title.titleize} by: #{book.author.name.titleize} " %>
+			<p class="col-md-4"><%= link_to("Add Book", addbook_path(book.id), method: :post) if logged_in? %></p>
 		</li>
 	<% end %>
 </ul>

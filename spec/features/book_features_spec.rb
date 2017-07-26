@@ -10,9 +10,9 @@ describe 'Feature Test: Book', :type => :feature do
 		@book.genre = @genre
 		@book.save
 		visit '/books'
-	    expect(page).to have_content("book1")
-	    expect(page).to have_content("author1")
-	    expect(page).to have_no_link("Add Book")
+	    expect(page).to have_content("Book1")
+	    expect(page).to have_content("Author1")
+	    expect(page).to have_no_button("Add Book")
 	end
 
 	it 'allows you to add book to your library if you are logged in' do
@@ -33,7 +33,7 @@ describe 'Feature Test: Book', :type => :feature do
 
 		visit '/books'	
 
-	    expect(page).to have_link('Add Book')
+	    expect(page).to have_button('Add Book')
 	    expect(@user.books.count).to eq(1)
 	end
 end

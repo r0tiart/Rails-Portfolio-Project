@@ -7,4 +7,7 @@ Rails.application.routes.draw do
 	resources :sessions, only: [:create, :destroy]
 
 	resources :books
+
+	resources :user_books, only:[:index, :update, :edit]
+	post "addbook/:id" => "user_books#create", as: "addbook"
 end
