@@ -74,6 +74,25 @@ describe 'Feature Test: User', :type => :feature do
 	    click_button('Sign In')
 	    expect(page).to have_content(@book.title.titleize)
 	end
+
+	it "has a show user page, which can only be accessed while logged in" do
+		@user = User.create(
+	      username: "user",
+	      password: "password",
+	    )
+	   	visit "/users"
+	   	expect(current_path).to eq('/')
+
+	   	click_link('Log In')
+
+	    fill_in("user[username]", :with => "user")
+	    fill_in("user[password]", :with => "password")
+	    click_button('Sign In')
+
+	    visit '/users'
+
+	    expect(page).to have_content(@user.username)
+	end
 end
 
 
