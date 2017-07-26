@@ -12,6 +12,7 @@ module UserBooksHelper
 	end
 
 	def currently_reading
-		books = current_user.user_books.where("page != 'completed'").pluck("book_id")
+		ids = current_user.user_books.where("page != 'completed'").pluck("book_id").flatten
+		books = ids.collect{|id| Book.where(id: id)}.flatten
 	end
 end
