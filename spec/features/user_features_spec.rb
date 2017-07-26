@@ -117,13 +117,6 @@ describe 'Feature Test: User SignedIn', :type => :feature do
 		click_link(@user2.username)
 		expect(current_path).to eq('/users/2')
 	end
-
-	it 'other user profiles have Add friend button if not already a friend' do 
-		click_button('Sign In')
-		visit '/users'
-		click_link(@user2.username)
-		expect(page).to have_link('Add Friend')
-	end
 end
 
 

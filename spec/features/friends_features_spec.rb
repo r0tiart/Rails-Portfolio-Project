@@ -50,4 +50,18 @@ describe 'Feature Test: Friend', :type => :feature do
 		visit '/users/2/pending_friends'
 		expect(page).to have_content(@user.username.titleize)
 	end
+
+	it 'other user profiles have Add friend button if not already a friend' do 
+		visit '/users'
+		click_link(@user2.username)
+		expect(page).to have_link('Add Friend')
+	end
+
+	it 'clicking Add Friend link, will give user2 a pending request' do
+		visit '/users'
+		click_link(@user2.username) 
+		expect(page).to have_link('Add Friend')
+		click_link('Add Friend')
+		expect(@user2.friend_requests.count).to eq(1)
+	end
 end

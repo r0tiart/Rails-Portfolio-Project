@@ -1,7 +1,7 @@
 <h1 class="text-center"><%= @user.username %></h1>
 
 <% if current_user != @user %>
-  <h4><%= link_to "Add Friend" %></h4>
+  <h4><%= link_to "Add Friend", user_friends_path(@user), method: "post"%></h4>
 <% end %>
 
 <div class="row">
