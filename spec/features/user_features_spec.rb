@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Feature Test: User', :type => :feature do 
 
-	it 'successfully signs up as non-admin' do
+	it 'successfully signs up' do
 	    visit '/'
 	    click_link('Sign Up')
 
@@ -27,19 +27,6 @@ describe 'Feature Test: User', :type => :feature do
 	    expect(page.get_rack_session_key('user_id')).to_not be_nil
   	end
 
-	it "on log in, successfully adds a session hash" do
-		@user = User.create(
-	      username: "user",
-	      password: "password",
-	    )
-	    visit "/"
-	    click_link('Log In')
-
-	    fill_in("user[username]", :with => "user")
-	    fill_in("user[password]", :with => "password")
-	    click_button('Sign In')
-	    expect(page.get_rack_session_key('user_id')).to_not be_nil
-	end
 
 	it 'prevents user from viewing user show page and redirects to home page if not logged in' do
 	    @user = User.create(
@@ -51,7 +38,24 @@ describe 'Feature Test: User', :type => :feature do
 	    expect(page).to have_content("Sign Up")
 	end
 
-	it "on log in, successfully adds a session hash" do
+	it 'prevents user from viewing users index page if not logged in' do
+		@user = User.create(
+	      username: "user",
+	      password: "password",
+	    )
+	    visit '/users'
+	    expect(current_path).to eq('/')
+	    expect(page).to have_content("Sign Up")
+	end
+end
+
+describe 'Feature Test: User SignedIn', :type => :feature do 
+	before do
+		User.destroy_all
+		Author.destroy_all
+		Book.destroy_all
+		Genre.destroy_all
+
 		@user = User.create(
 	      username: "user",
 	      password: "password",
@@ -66,32 +70,32 @@ describe 'Feature Test: User', :type => :feature do
 
 		@user.user_books.create(book_id: @book.id)
 
-	    visit "/"
+	   	visit "/"
 	    click_link('Log In')
 
 	    fill_in("user[username]", :with => "user")
 	    fill_in("user[password]", :with => "password")
-	    click_button('Sign In')
-	    expect(page).to have_content(@book.title.titleize)
+
+
 	end
 
-	it "has a show user page, which can only be accessed while logged in" do
-		@user = User.create(
-	      username: "user",
-	      password: "password",
-	    )
-	   	visit "/users"
-	   	expect(current_path).to eq('/')
+	it "has a show user page, while logged in" do
 
-	   	click_link('Log In')
-
-	    fill_in("user[username]", :with => "user")
-	    fill_in("user[password]", :with => "password")
-	    click_button('Sign In')
-
-	    visit '/users'
+		click_button('Sign In')
+		visit '/users'
 
 	    expect(page).to have_content(@user.username)
+	end
+
+	it "on log in, redirect to page /users/:id" do
+	   click_button('Sign In')
+	   expect(current_path).to eq('/users/1')
+	   expect(page).to have_content(@book.title.titleize)
+	end
+
+	it "on log in, successfully adds a session hash" do
+	    click_button('Sign In')
+	    expect(page.get_rack_session_key('user_id')).to_not be_nil
 	end
 end
 
