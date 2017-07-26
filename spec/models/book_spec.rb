@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Book, type: :model do
   describe "class methods" do
     before do
-      # Author.destroy_all
+      Author.destroy_all
       Genre.destroy_all
       Book.destroy_all
 
@@ -38,23 +38,6 @@ RSpec.describe Book, type: :model do
       @user.save
       @user2.save
       expect(@book.users.count).to eq(2)
-    end
-
-    it "starts on page one" do
-      expect(@book.page).to eq("1")
-    end
-
-    describe "#reading" do 
-      it 'returns true if you are still reading' do
-        expect(@book.reading).to be_truthy
-      end
-    end
-
-    describe "#completed" do 
-      it 'returns true if you have completed reading' do
-        @book.page = "completed"
-        expect(@book.completed).to be_truthy
-      end
     end
   end
 end

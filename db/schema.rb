@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 20170724183328) do
     t.integer "genre_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "page", default: "1"
   end
 
   create_table "friendships", force: :cascade do |t|
@@ -45,6 +44,7 @@ ActiveRecord::Schema.define(version: 20170724183328) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "page", default: "1"
   end
 
   create_table "users", force: :cascade do |t|
