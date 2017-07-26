@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 		resources :friends, only: [:index] #all friends
 	end
 
+	get 'users/:id/pending_friends', to: 'friends#pending_friends', as: 'pending'
+
 	get "signin" => "sessions#new"
 	resources :sessions, only: [:create, :destroy]
 

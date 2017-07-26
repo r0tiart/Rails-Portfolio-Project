@@ -39,7 +39,7 @@
             <li><%= link_to "Profile", user_path(current_user) %></li>
             <li><%= link_to "Users", users_path %></li>
             <li><%= link_to "Friends", user_friends_path(current_user) %></li>
-            <li><%= link_to "Pendings Friends" %></li>
+            <li><%= link_to "Pendings Friends", pending_path(current_user) %></li>
             <li><%= link_to "Log Out", session_path(current_user), method: :delete %></li>
         <% end %>
 

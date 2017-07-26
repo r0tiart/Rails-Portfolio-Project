@@ -47,6 +47,7 @@ describe 'Feature Test: Friend', :type => :feature do
 	end
 
 	it 'has a pending friend list' do 
-		@user.friend_request=(@user2)
+		visit '/users/2/pending_friends'
+		expect(page).to have_content(@user.username)
 	end
 end
