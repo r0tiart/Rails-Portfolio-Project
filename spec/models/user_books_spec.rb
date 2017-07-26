@@ -26,14 +26,14 @@ RSpec.describe UserBook, type: :model do
 
     describe "#reading" do 
       it 'returns true if you are still reading' do
-        expect(@user_book.reading).to be_truthy
+        expect(@user_book.reading?).to be_truthy
       end
     end
 
     describe "#completed" do 
       it 'returns true if you have completed reading' do
         @user_book.page = "completed"
-        expect(@user_book.completed).to be_truthy
+        expect(@user_book.completed?).to be_truthy
       end
     end
   end

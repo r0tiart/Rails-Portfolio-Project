@@ -10,4 +10,8 @@ module UserBooksHelper
 	def finished_books
 		current_user.user_books.where(page: "completed")
 	end
+
+	def currently_reading
+		books = current_user.user_books.where("page != 'completed'").pluck("book_id")
+	end
 end

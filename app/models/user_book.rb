@@ -5,13 +5,13 @@ class UserBook < ApplicationRecord
 	validate :page_must_be_number_or_completed
 
 	
-	def reading
+	def reading?
 		if self.page != "completed"
 			true
 		end
 	end
 
-	def completed
+	def completed?
 		true if self.page == "completed"
 	end
 
