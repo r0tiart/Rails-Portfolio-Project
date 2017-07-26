@@ -1,7 +1,7 @@
 <h1 class="text-center"><%= @user.username %></h1>
 
 <div class="row">
-  <div class="col-md-4"><h3>Currently Reading</h3>
+  <div class="col-md-6"><h3>Currently Reading</h3>
   	 <% if reading? %>
   	 <ul>
   	 	<% user_books.each do |book| %>
@@ -10,6 +10,11 @@
   	 </ul>	
   	 <% end %>
   </div>
-  <div class="col-md-4"><h3>Finished Books</h3></div>
-  <div class="col-md-4"><h3>Favorite Books</h3></div>
+  <div class="col-md-6"><h3>Finished Books</h3>
+  	<ul>
+  		<% finished_books.each do |book| %>
+  			<li><%= book.title %></li>
+  		<% end %>
+  	</ul>
+  </div>
 </div>
