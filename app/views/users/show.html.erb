@@ -1,5 +1,9 @@
 <h1 class="text-center"><%= @user.username %></h1>
 
+<% if current_user != @user %>
+  <h4><%= link_to "Add Friend" %></h4>
+<% end %>
+
 <div class="row">
   <div class="col-md-6"><h3>Currently Reading</h3>
   	 <% if reading? %>

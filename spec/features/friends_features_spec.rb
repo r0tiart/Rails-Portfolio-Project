@@ -41,13 +41,13 @@ describe 'Feature Test: Friend', :type => :feature do
 	it 'has a friend list - of all accepted friends' do
 		@user2.accept_friend_request(@user)
 		visit '/users/1/friends'
-		expect(page).to have_content(@user.username)
+		expect(page).to have_content(@user.username.titleize)
 		visit '/users/2/friends'
-		expect(page).to have_content(@user2.username)
+		expect(page).to have_content(@user2.username.titleize)
 	end
 
 	it 'has a pending friend list' do 
 		visit '/users/2/pending_friends'
-		expect(page).to have_content(@user.username)
+		expect(page).to have_content(@user.username.titleize)
 	end
 end

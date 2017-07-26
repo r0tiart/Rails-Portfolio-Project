@@ -61,6 +61,11 @@ describe 'Feature Test: User SignedIn', :type => :feature do
 	      password: "password",
 	    )
 
+	    @user2 = User.create(
+	      username: "user2",
+	      password: "password",
+	    )
+
 	    @book = Book.create(title: "book1")
 	    @author = Author.create(name: "author1")
 	    @genre = Genre.create(title: "genre1")
@@ -104,6 +109,20 @@ describe 'Feature Test: User SignedIn', :type => :feature do
 	it 'has link to friend_requests' do 
 		click_button('Sign In')
 		expect(page).to have_link('Pendings Friends')
+	end
+
+	it '/users page links to other users profile' do 
+		click_button('Sign In')
+		visit '/users'
+		click_link(@user2.username)
+		expect(current_path).to eq('/users/2')
+	end
+
+	it 'other user profiles have Add friend button if not already a friend' do 
+		click_button('Sign In')
+		visit '/users'
+		click_link(@user2.username)
+		expect(page).to have_link('Add Friend')
 	end
 end
 
