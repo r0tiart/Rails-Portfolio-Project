@@ -1,0 +1,9 @@
+<% if user == current_user %>
+  <ul>
+      <li><%= link_to book.title.titleize, edit_book_path(book) %></li>
+  </ul>  
+<% else %>
+  <ul>
+      <li><%= book.title.titleize %></li>
+  </ul>  
+<% end %>

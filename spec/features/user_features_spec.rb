@@ -121,15 +121,15 @@ describe 'Feature Test: User SignedIn', :type => :feature do
 	it 'has add book and edit book, if in your profile' do 
 		click_button('Sign In')
 		visit '/users/1'
-		expect(page).to have_link('Add Book')
-		expect(page).to have_link('Edit Book')
+		expect(page).to have_button('Add Book')
+		expect(page).to have_link(@book.title.titleize)
 	end
 
 	it 'does not have links to add boo and edit book if not your profile' do 
 		click_button('Sign In')
 		visit '/users/2'
-		expect(page).not_to have_link('Add Book')
-		expect(page).not_to have_link('Edit Book')
+		expect(page).not_to have_button('Add Book')
+		expect(page).not_to have_link(@book.title.titleize)
 	end
 end
 
