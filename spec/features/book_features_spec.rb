@@ -33,7 +33,8 @@ describe 'Feature Test: Book', :type => :feature do
 
 		visit '/books'	
 
-	    expect(page).to have_button('Add Book')
+	    expect(page).to have_link('Add Book')
+	    click_link('Add Book')
 	    expect(@user.books.count).to eq(1)
 	end
 end

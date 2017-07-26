@@ -1,6 +1,6 @@
 class UserBooksController < ApplicationController 
 	def create
-		raise params.inspect
-		current_user.books
+		current_user.user_books.create(book_id: params[:id])
+		redirect_to user_path(current_user)
 	end
 end
