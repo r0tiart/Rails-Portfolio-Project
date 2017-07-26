@@ -75,8 +75,6 @@ describe 'Feature Test: User SignedIn', :type => :feature do
 
 	    fill_in("user[username]", :with => "user")
 	    fill_in("user[password]", :with => "password")
-
-
 	end
 
 	it "has a show user page, while logged in" do
@@ -96,6 +94,16 @@ describe 'Feature Test: User SignedIn', :type => :feature do
 	it "on log in, successfully adds a session hash" do
 	    click_button('Sign In')
 	    expect(page.get_rack_session_key('user_id')).to_not be_nil
+	end
+
+	it 'has link to friends' do 
+		click_button('Sign In')
+		expect(page).to have_link('Friends')
+	end
+
+	it 'has link to friend_requests' do 
+		click_button('Sign In')
+		expect(page).to have_link('Pendings Friends')
 	end
 end
 
