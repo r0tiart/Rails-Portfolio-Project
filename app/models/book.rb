@@ -6,6 +6,9 @@ class Book < ApplicationRecord
 
 	validate :page_must_be_number_or_completed
 
+	validates :title, uniqueness: { case_sensitive: false }
+	validates :title, presence: true
+
 	def reading
 		if self.page != "completed"
 			true

@@ -1,0 +1,9 @@
+<h1>List of Books</h1>
+
+<ul>
+	<% @books.each do |book| %>
+		<li><%= "#{book.title.titleize} by, #{book.author.name.titleize} " %>
+			<%= link_to("Add Book", new_book_path) if logged_in? %>
+		</li>
+	<% end %>
+</ul>
