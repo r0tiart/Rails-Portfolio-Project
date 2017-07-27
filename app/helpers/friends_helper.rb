@@ -4,7 +4,7 @@ module FriendsHelper
 	end
 
 	def all_friends_including_pending
-		current_user.pending_requests + friends
+		current_user.pending_requests + friends + pending_friend_requests
 	end
 
 	def pending_friend_requests

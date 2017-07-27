@@ -26,7 +26,6 @@ describe 'Feature Test: Friend', :type => :feature do
 		@book.save
 
 		@user.user_books.create(book_id: @book.id)
-		@user.friend_request=(@user2)
 
 
 	   	visit "/"
@@ -39,6 +38,8 @@ describe 'Feature Test: Friend', :type => :feature do
 	end
 
 	it 'has a friend list - of all accepted friends' do
+		@user.friend_request=(@user2)
+
 		@user2.accept_friend_request(@user)
 		visit '/users/1/friends'
 		expect(page).to have_content(@user.username.titleize)
@@ -67,6 +68,7 @@ describe 'Feature Test: Friend', :type => :feature do
 
 
 	it 'has links to the friends profile and the pending friends profile, and allows you to accept friend requests' do
+		@user.friend_request=(@user2)
 
 		click_link('Log Out')
 

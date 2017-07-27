@@ -21,26 +21,11 @@ describe 'Feature Test: Book', :type => :feature do
 	it 'allows non logged in user to see list of books people are reading' do
 	
 		visit '/books'
-	    expect(page).to have_content("Book1")
-	    expect(page).to have_content("Author1")
-	    expect(page).to have_no_button("Add Book")
+	    expect(page).to have_content(@book.title.titleize)
+	    expect(page).to have_content(@author.name.titleize)
+	    expect(page).to have_no_link(@book.title.titleize)
 	end
 
-	it 'allows you to add book to your library if you are logged in' do
-
-		visit "/"
-	    click_link('Log In')
-
-	    fill_in("user[username]", :with => "user")
-	    fill_in("user[password]", :with => "password")
-		click_button('Sign In')	
-
-		visit '/books'	
-
-	    expect(page).to have_link('Add Book')
-	    click_link('Add Book')
-	    expect(@user.books.count).to eq(1)
-	end
 
 	it 'has a link to show page if logged in' do 
 		visit "/"
@@ -56,7 +41,7 @@ describe 'Feature Test: Book', :type => :feature do
 
 	it 'allows you to add book in the book show page & redirects to /books if not logged in' do 
 		visit '/books'	
-		expect(current_page).to eq('/books')
+		expect(current_path).to eq('/books')
 
 		visit "/"
 	    click_link('Log In')
@@ -65,7 +50,7 @@ describe 'Feature Test: Book', :type => :feature do
 	    fill_in("user[password]", :with => "password")
 		click_button('Sign In')	
 
-		visit '/books'	
+		visit '/books/1'	
 		expect(page).to have_link('Add Book')
 	end
 
@@ -77,7 +62,7 @@ describe 'Feature Test: Book', :type => :feature do
 	    fill_in("user[password]", :with => "password")
 		click_button('Sign In')	
 
-		visit '/books'
+		visit '/books/1'
 		expect(page).to have_content(@book.genre.title.titleize)
 		expect(page).to have_content(@book.author.name.titleize)
 		expect(page).to have_content(@book.title.titleize)	
