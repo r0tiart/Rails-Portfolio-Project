@@ -5,7 +5,8 @@ class UserBooksController < ApplicationController
 	end
 
 	def edit 
-		@book = UserBook.find_by(params[:id])
+		@user_book = UserBook.find_by(params[:id])
+		@book = Book.find_by(id: @user_book.book_id)
 	end
 
 end

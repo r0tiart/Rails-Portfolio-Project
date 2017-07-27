@@ -67,4 +67,22 @@ describe 'Feature Test: Book', :type => :feature do
 		expect(page).to have_content(@book.author.name.titleize)
 		expect(page).to have_content(@book.title.titleize)	
 	end
+
+	it 'can change the bookmark or make the book as complete' do 
+		visit "/"
+	    click_link('Log In')
+
+	    fill_in("user[username]", :with => "user")
+	    fill_in("user[password]", :with => "password")
+		click_button('Sign In')	
+		visit '/books/1'
+
+		click_link('Add Book')
+
+		visit '/books/1'
+
+		click_link('Bookmarks')
+		expect(current_path).to eq('/user_books/1/edit')
+		expect(page).to have_field('user_books_page')
+	end
 end
