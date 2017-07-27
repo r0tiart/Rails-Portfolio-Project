@@ -3,9 +3,4 @@
 <ul>
     <%= render partial: "index", collection: @books, as: :book %>
 
-<!-- 	<% @books.each do |book| %>
-		<li><%= "#{book.title.titleize} by: #{book.author.name.titleize} " %>
-			<p><%= link_to("Add Book", addbook_path(book.id), method: :post) if logged_in? && user_books.exclude?(book) %></p>
-		</li>
-	<% end %> -->
 </ul>

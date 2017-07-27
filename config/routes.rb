@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 	root "application#welcome"
 	resources :users, only: [:new, :create, :index, :show, :update, :edit] do
 		resources :friends, only: [:index, :create, :update] #all friends
+		resources :books, only: [:new, :create]
 	end
 
 	get 'users/:id/pending_friends', to: 'friends#pending_friends', as: 'pending'
@@ -10,7 +11,7 @@ Rails.application.routes.draw do
 	get "signin" => "sessions#new"
 	resources :sessions, only: [:create, :destroy]
 
-	resources :books
+	resources :books, only: [:index, :show]
 
 	resources :user_books, only: [:index, :update, :edit]
 	post "addbook/:id" => "user_books#create", as: "addbook"
