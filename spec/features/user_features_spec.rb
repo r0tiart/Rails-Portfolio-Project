@@ -125,6 +125,18 @@ describe 'Feature Test: User SignedIn', :type => :feature do
 		expect(page).to have_link(@book.title.titleize)
 	end
 
+	it 'creates a new book for an existing user and author' do 
+		click_button('Sign In')
+		visit '/users/1'
+		click_button('Add Book')
+		fill_in("book[title]", :with => "New Book")
+		choose("book_author_id_1")
+		choose("book_genre_id_1")
+		click_button("Create Book")
+		expect(current_path).to eq('/books/2')
+		visit '/books'
+		expect(page).to have_content("New Book")
+	end
 end
 
 

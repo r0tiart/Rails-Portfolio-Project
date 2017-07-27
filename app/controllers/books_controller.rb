@@ -19,8 +19,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
 	if @book.save
-		format.html { redirect_to book_path(@book), notice: 'Post was successfully created.' }
-		format.json { render action: 'show', status: :created, location: @book }
+		redirect_to book_path(@book)
 	else
 		render :new
 	end
