@@ -1,1 +1,7 @@
 <%= render partial: 'books/show', locals: {book: @book} %>
+
+<%= form_for(@user_book) do |f| %>
+	<%= f.label :page, "New Page" %>
+	<%= f.text_field :page %><br>
+	<%= f.submit "Update Bookmark"%>
+<% end %>

@@ -83,6 +83,7 @@ describe 'Feature Test: Book', :type => :feature do
 
 		click_link('Bookmarks')
 		expect(current_path).to eq('/user_books/1/edit')
-		expect(page).to have_field('user_books_page')
+		expect(page).to have_field('user_book_page')
+		expect(page).to have_button('Update Bookmark')
 	end
 end
