@@ -16,13 +16,34 @@ class BooksController < ApplicationController
 		@book = Book.new
 	end
 
-	def create
-		book_params
+  def create
+    @book = Book.new(book_params)
+	if @book.save
+		format.html { redirect_to book_path(@book), notice: 'Post was successfully created.' }
+		format.json { render action: 'show', status: :created, location: @book }
+	else
+		render :new
 	end
+  end
 
 	private 
 	def book_params
-		raise params.inspect
-		params.require(:book).permit(:title, :author_id => [], :author_attributes => [:name], :genre_id => [], :genre_attributs => [:title])
+		if author_id? && genre_id?
+			params.require(:book).permit(:title, :author_id, :genre_id)
+		elsif author_id? && !genre_id?
+			params.require(:book).permit(:title, :author_id, :genre_attribues => [:title])
+		elsif !author_id? && genre_id?
+			params.require(:book).permit(:title, :genre_id, :author_attributes => [:name])
+		else
+			params.require(:book).permit(:title, :genre_attribues => [:title], :author_attributes => [:name])
+		end
+	end
+
+	def author_id?
+		!!params[:book][:author_id]
+	end	
+
+	def genre_id?
+		!!params[:book][:genre_id]
 	end
 end
