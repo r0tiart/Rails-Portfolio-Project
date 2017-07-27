@@ -1,0 +1,63 @@
+<%= form_for(@book) do |f| %>
+  <% if @book.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+      <ul>
+      <% @book.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %><br><br>
+
+  <strong>Author:</strong><br><br>
+  </div>
+
+  <div class="field">
+    <%= f.collection_check_boxes :author_id, Author.all, :id, :name do |b| %>
+      <%= b.check_box %>
+
+      <%= "#{b.text}" %>
+    <% end %>
+  </div> <br>
+
+  <strong>New Author: </strong>
+
+  <div class="field">
+    <%= f.fields_for :author do |author_form| %>
+      <%= author_form.label :name %>
+      <%= author_form.text_field :name %>
+    <% end %>  
+  </div><br>
+
+  <strong>Genre:</strong><br><br>
+  </div>
+
+  <div class="field">
+    <%= f.collection_check_boxes :genre_id, Genre.all, :id, :title do |b| %>
+      <%= b.check_box %>
+
+      <%= "#{b.text}" %>
+    <% end %>
+  </div> <br>
+
+  <strong>New Genre: </strong>
+
+  <div class="field">
+    <%= f.fields_for :genre do |genre_form| %>
+      <%= genre_form.label :title %>
+      <%= genre_form.text_field :title %>
+    <% end %>  
+
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
