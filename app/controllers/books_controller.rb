@@ -39,10 +39,10 @@ class BooksController < ApplicationController
 	end
 
 	def author_id?
-		!!params[:book][:author_id]
+		params[:book][:author_id] != ""
 	end	
 
 	def genre_id?
-		!!params[:book][:genre_id]
+		params[:book][:genre_id] != ""
 	end
 end
