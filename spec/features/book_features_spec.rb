@@ -68,4 +68,18 @@ describe 'Feature Test: Book', :type => :feature do
 		visit '/books'	
 		expect(page).to have_link('Add Book')
 	end
+
+	it 'book show page has author, genre and title' do 
+		visit "/"
+	    click_link('Log In')
+
+	    fill_in("user[username]", :with => "user")
+	    fill_in("user[password]", :with => "password")
+		click_button('Sign In')	
+
+		visit '/books'
+		expect(page).to have_content(@book.genre.title.titleize)
+		expect(page).to have_content(@book.author.name.titleize)
+		expect(page).to have_content(@book.title.titleize)	
+	end
 end
