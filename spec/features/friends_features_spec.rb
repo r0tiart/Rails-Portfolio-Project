@@ -64,4 +64,27 @@ describe 'Feature Test: Friend', :type => :feature do
 		click_link('Add Friend')
 		expect(@user2.friend_requests.count).to eq(1)
 	end
+
+
+	it 'has links to the friends profile and the pending friends profile, and allows you to accept friend requests' do
+
+		click_link('Log Out')
+
+		visit '/'
+
+		click_link('Log In')
+
+	    fill_in("user[username]", :with => "user2")
+	    fill_in("user[password]", :with => "password")
+
+	    click_button('Sign In')
+
+		visit '/users/2/pending_friends'
+		expect(page).to have_link(@user.username.titleize)
+		click_link(@user.username.titleize)
+		expect(page).to have_link('Accept Friend Request')
+		click_link('Accept Friend Request')
+		visit '/users/2/friends'
+		expect(page).to have_link(@user.username.titleize)
+	end
 end

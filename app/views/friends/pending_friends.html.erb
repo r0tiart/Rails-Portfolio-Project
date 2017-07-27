@@ -1,3 +1,17 @@
 <h1>Pending Friends</h1>
 
-<%= render partial: "friends", collection: @friends, as: :friend %>
+
+<div class=row>
+
+	<div class="col-md-6">
+		<h4>Friend Requests From:</h4>
+
+		<%= render partial: "friends", collection: @friends_requests, as: :friend %>
+	</div>
+
+	<div class="col-md-6">
+		<h4>Friends Requested, waiting approval:</h4>
+		<%= render partial: "friends", collection: @pending_friends, as: :friend %>
+	</div>
+</div>
+

@@ -3,7 +3,11 @@ module FriendsHelper
 		current_user.friends
 	end
 
-	def pending_friends
-		current_user.friend_requests + current_user.pending_requests + friends
+	def all_friends_including_pending
+		current_user.pending_requests + friends
+	end
+
+	def pending_friend_requests
+		current_user.friend_requests
 	end
 end

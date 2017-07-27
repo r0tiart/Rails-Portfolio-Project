@@ -19,7 +19,7 @@ class Friendship < ApplicationRecord
 
 	def self.pending_requests(user)
 		friends_pending = self.where(user_id: user.id, status: "pending")
-		friends_pending.collect{ |request| request.user}
+		friends_pending.collect{ |request| request.friend}
 	end
 
 	def self.accept_request(requester, requestee)
