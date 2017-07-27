@@ -1,4 +1,9 @@
 <%= render partial: 'books/show', locals: {book: @book} %>
+<% if !@user_book.valid? %>
+	<% @user_book.errors.messages.each do |key, value|  %>
+		<strong><%= "#{key}, #{value.first}" %></strong><br>
+	<% end %>
+<% end %>
 
 <%= form_for(@user_book) do |f| %>
 	<%= f.label :page, "New Page" %>

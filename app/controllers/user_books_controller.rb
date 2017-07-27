@@ -5,8 +5,25 @@ class UserBooksController < ApplicationController
 	end
 
 	def edit 
-		@user_book = UserBook.find_by(params[:id])
+		@user_book = UserBook.find_by(id: params[:id])
 		@book = Book.find_by(id: @user_book.book_id)
+	end
+
+	def update
+
+		@user_book = UserBook.find_by(id: params[:id])
+		@book = Book.find_by(id: @user_book.book_id)
+		if !!@user_book.update(user_book_params)
+			redirect_to book_path(@user_book.book_id)
+		else
+			render :edit
+		end
+	end
+
+	private
+
+	def user_book_params
+		params.require(:user_book).permit(:page)
 	end
 
 end
