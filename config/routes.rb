@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
 	get "signin" => "sessions#new"
 	resources :sessions, only: [:create, :destroy]
-	get '/auth/facebook/callback' => 'sessions#facebook'
+	get '/auth/facebook/callback' => 'sessions#create'
 
 
 	resources :books, only: [:index, :show]
