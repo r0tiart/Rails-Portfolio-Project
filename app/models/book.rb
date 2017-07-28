@@ -15,19 +15,19 @@ class Book < ApplicationRecord
 		self.author.name
 	end
 
-	def author_attributes=(author_attributes)
+	def author_name=(author_attributes)
 	  	author_attributes.each do |i, attribute| 
 	  		if !attribute.blank?
-	  			author = Author.find_or_create_by(attribute)
-				self.author = tag 	
+	  			author = Author.find_or_create_by(name: attribute)
+				self.author = author 
 			end	
 		end
   	end
 
-  	def genre_attributes=(genre_attributes)
+  	def genre_title=(genre_attributes)
   		genre_attributes.each do |i, attribute|
   			if !attribute.blank?
-	  			genre = Genre.find_or_create_by(attribute)
+	  			genre = Genre.find_or_create_by(title: attribute)
 				self.genre = genre 	
 			end	
 		end
