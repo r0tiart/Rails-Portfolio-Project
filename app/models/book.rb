@@ -7,15 +7,15 @@ class Book < ApplicationRecord
 	validates :title, uniqueness: { case_sensitive: false }
 	validates :title, presence: true
 
-	def genre_title
-		self.genre.title
-	end
+	# def genre_title
+	# 	self.genre.title
+	# end
 
-	def author_name
-		self.author.name
-	end
+	# def author_name
+	# 	self.author.name
+	# end
 
-	def author_name=(author_attributes)
+	def author_attributes=(author_attributes)
 	  	author_attributes.each do |i, attribute| 
 	  		if !attribute.blank?
 	  			author = Author.find_or_create_by(name: attribute)
@@ -24,7 +24,7 @@ class Book < ApplicationRecord
 		end
   	end
 
-  	def genre_title=(genre_attributes)
+  	def genre_attributes=(genre_attributes)
   		genre_attributes.each do |i, attribute|
   			if !attribute.blank?
 	  			genre = Genre.find_or_create_by(title: attribute)

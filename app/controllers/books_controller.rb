@@ -31,11 +31,11 @@ class BooksController < ApplicationController
 		if author_id? && genre_id?
 			params.require(:book).permit(:title, :author_id, :genre_id)
 		elsif author_id? && !genre_id?
-			params.require(:book).permit(:title, :author_id, :genre_title => [:title])
+			params.require(:book).permit(:title, :author_id, :genre_attributes => [:title])
 		elsif !author_id? && genre_id?
-			params.require(:book).permit(:title, :genre_id, :author_name => [:name])
+			params.require(:book).permit(:title, :genre_id, :author_attributes => [:name])
 		else
-			params.require(:book).permit(:title, :genre_title => [:title], :author_name => [:name])
+			params.require(:book).permit(:title, :genre_attributes => [:title], :author_attributes => [:name])
 		end
 	end
 

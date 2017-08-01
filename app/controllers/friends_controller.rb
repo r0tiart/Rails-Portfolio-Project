@@ -17,9 +17,9 @@ class FriendsController < ApplicationController
 		redirect_to user_path(current_user)
 	end
 
-	def update
-		@user = User.find_by(id: params[:id])
-		@user.accept_friend_request(current_user)
+	def update		
+		@user = User.find_by(id: params[:id]) #username - sent friend request
+		current_user.accept_friend_request(@user) #antley - accept request
 		redirect_to user_path(current_user)
 	end
 end

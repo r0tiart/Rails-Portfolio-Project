@@ -29,7 +29,7 @@
   <strong>New Author: </strong>
 
   <div class="field">
-    <%= f.fields_for :author_name do |author_form| %>
+    <%= f.fields_for :author_attributes do |author_form| %>
       <%= author_form.label :name %>
       <%= author_form.text_field :name %>
     <% end %>  
@@ -49,7 +49,7 @@
   <strong>New Genre: </strong>
 
   <div class="field">
-    <%= f.fields_for :genre_title do |genre_form| %>
+    <%= f.fields_for :genre_attributes do |genre_form| %>
       <%= genre_form.label :title %>
       <%= genre_form.text_field :title %>
     <% end %>  
