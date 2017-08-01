@@ -16,15 +16,15 @@ class BooksController < ApplicationController
 		@book = Book.new
 	end
 
-  def create
-    @book = Book.new(book_params)
-	if @book.save
-		current_user.user_books.create(book_id: @book.id)
-		redirect_to book_path(@book)
-	else
-		render :new
-	end
-  end
+  	def create
+    		@book = Book.new(book_params)
+		if @book.save
+			current_user.user_books.create(book_id: @book.id)
+			redirect_to book_path(@book)
+		else
+			render :new
+		end
+  	end
 
 	private 
 	def book_params
