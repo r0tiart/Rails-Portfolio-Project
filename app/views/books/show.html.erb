@@ -3,4 +3,8 @@
 
 <%= link_to("Add Book", addbook_path(@book), method: :post) if logged_in? && user_books.exclude?(@book) %>
 
+<% if favorite?(@book) %>
+	<strong>Favorite</strong>
+<% end %>
+
 <%= link_to("Bookmarks", edit_user_book_path(@user_book)) if logged_in? && user_books.include?(@book) %>

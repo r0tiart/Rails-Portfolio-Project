@@ -7,14 +7,6 @@ class Book < ApplicationRecord
 	validates :title, uniqueness: { case_sensitive: false }
 	validates :title, presence: true
 
-	# def genre_title
-	# 	self.genre.title
-	# end
-
-	# def author_name
-	# 	self.author.name
-	# end
-
 	def author_attributes=(author_attributes)
 	  	author_attributes.each do |i, attribute| 
 	  		if !attribute.blank?

@@ -15,6 +15,10 @@ class UserBook < ApplicationRecord
 		true if self.page == "completed"
 	end
 
+	def favorite? 
+		!!favorite
+	end
+
 	private
 
 	def page_must_be_number_or_completed

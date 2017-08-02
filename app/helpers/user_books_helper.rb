@@ -20,4 +20,8 @@ module UserBooksHelper
 	def current_book(book) 
 		current_user.user_books.where(book_id: book.id).first
 	end
+
+	def favorite?(book)
+		current_user.user_books.where(book_id: book.id).first.favorite?
+	end
 end
