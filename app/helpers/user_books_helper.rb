@@ -22,6 +22,6 @@ module UserBooksHelper
 	end
 
 	def favorite?(book)
-		current_user.user_books.where(book_id: book.id).first.favorite?
+		current_user.user_books.where(book_id: book.id).first.favorite? if current_user.user_books.where(book_id: book.id).length > 0
 	end
 end
