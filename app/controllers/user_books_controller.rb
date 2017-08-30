@@ -1,4 +1,10 @@
 class UserBooksController < ApplicationController 
+
+	def index
+		binding.pry
+		user = User.find(params[:user_id])
+		@books = user.books
+	end
 	def create
 		current_user.user_books.create(book_id: params[:id])
 		redirect_to user_path(current_user)

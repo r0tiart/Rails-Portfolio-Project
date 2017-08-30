@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 	resources :users, only: [:new, :create, :index, :show, :update, :edit] do
 		resources :friends, only: [:index, :create, :update] #all friends
 		resources :books, only: [:new, :create]
+		resources :user_books, only: [:index]
 	end
 
 	get 'users/:id/pending_friends', to: 'friends#pending_friends', as: 'pending'
