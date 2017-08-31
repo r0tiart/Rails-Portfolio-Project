@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 	root "application#welcome"
 	resources :users, only: [:new, :create, :index, :show, :update, :edit] do
 		resources :friends, only: [:index, :create, :update] #all friends
-		resources :books, only: [:new, :create, :index]
+		resources :books, only: [:new, :create, :index, :show]
 		# resources :user_books, only: [:index]
 	end
 

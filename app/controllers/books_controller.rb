@@ -18,8 +18,18 @@ class BooksController < ApplicationController
 	end
 
 	def show 
-		@book = Book.find_by(id: params[:id])
-		@user_book = UserBook.find_by(book_id: @book.id, user_id: current_user.id)
+		if params[:user_id]
+			@book = Book.find_by(id: params[:id])
+			@user_book = UserBook.find_by(book_id: @book.id, user_id: current_user.id)
+
+		else	
+			@book = Book.find_by(id: params[:id])
+			@user_book = UserBook.find_by(book_id: @book.id, user_id: current_user.id)
+		end
+		respond_to do |format|
+	      format.html { render :show }
+	      format.json { render json: @book}
+    	end
 	end
 
 	def new

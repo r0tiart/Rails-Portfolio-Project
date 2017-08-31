@@ -1,6 +1,6 @@
-<h1><%= book.title.titleize %></h1>
-<h4>By: <%= book.author.name.titleize %></h4>
-<h4>Genre: <%= book.genre.title.titleize %></h4>
+<h1 id="bookTitle"><%= book.title.titleize %></h1>
+<h4 id="bookAuthor">By: <%= book.author.name.titleize %></h4>
+<h4 id="bookGenre">Genre: <%= book.genre.title.titleize %></h4>
 
 <% if !!current_book(book) %>
 	<p>Currently Reading, on page: <%= current_book(book).page %></p>

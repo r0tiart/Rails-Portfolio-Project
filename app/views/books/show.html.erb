@@ -10,6 +10,7 @@
 
 <% if logged_in? && user_books.include?(@book) %>
 	<%= link_to("Bookmarks", edit_user_book_path(@user_book))%><br>
-
-	<a href="#" class="js-next" data-id="<%=@user_book.id%>">Next...</a>
+	<%= link_to "Next", user_book_path(current_user, @book), class: "userBook", user_id: current_user.id, book_id: @book.id %>
 <% end %>
+
+
