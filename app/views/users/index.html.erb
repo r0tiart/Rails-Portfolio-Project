@@ -6,7 +6,7 @@
 			<%= link_to "User Libray", user_books_path(user.id), class: "userBooks", user_id: user.id %>
 		</li>
 
-		<div id="userbooks-<%= user.id %>"></div>
+		<div><ul id="userbooks-<%= user.id %>"></ul></div>
 
 	<% end %>	
 </ul>	
