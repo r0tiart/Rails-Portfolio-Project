@@ -1,4 +1,5 @@
 $( document ).ready(function() {
+	$(".field-author").hide()
 	selectAuthor()
 	newAuthor()
 });
@@ -7,13 +8,17 @@ $( document ).ready(function() {
 function selectAuthor(){
 	$(".select-author").on("click", function(e){
 		e.preventDefault()
-		alert("i've been clicked")
+		$(".field-author").show()
+		$(".field-newAuthor").hide()
+
 	})
 }
 
 function newAuthor(){
 	$(".new-author").on("click", function(e){
 		e.preventDefault()
-		alert("i've been clicked")
+		$(".field-newAuthor").show()
+		$(".field-author").hide()
+
 	})
 }
