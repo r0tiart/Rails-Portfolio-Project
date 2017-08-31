@@ -20,13 +20,16 @@ function userBooks(){
 function showUserBook(){
   $(".userBook").on("click", function(e) {
     e.preventDefault()
+    var nextId = parseInt($(this).attr("book_id")) + 1;
+        $.get(`/books/${nextId}.json`, function(book){
 
-    var userId = parseInt($(this).attr("user_id"))
-    var bookId = parseInt($(this).attr("book_id"))
-
-        $.get(`/users/${userId}/books/${bookId}.json`, function(book){
-       
-          debugger;
-        })
+            $("#bookTitle").text(book["title"]);
+            $("#bookAuthor").text(book["author"]["name"]);
+            $("#bookGenre").text(book["genre"]["title"]);
+            // re-set the id to current on the link
+            $(".userBook").attr("book_id", book["id"]);
+        }).error(function(){ alert("No more books in list")})
   })  
 };
+
+
