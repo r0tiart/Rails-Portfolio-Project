@@ -7,4 +7,9 @@
 	<strong>Favorite</strong>
 <% end %>
 
-<%= link_to("Bookmarks", edit_user_book_path(@user_book)) if logged_in? && user_books.include?(@book) %>
+
+<% if logged_in? && user_books.include?(@book) %>
+	<%= link_to("Bookmarks", edit_user_book_path(@user_book))%><br>
+
+	<a href="#" class="js-next" data-id="<%=@user_book.id%>">Next...</a>
+<% end %>
