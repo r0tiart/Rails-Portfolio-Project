@@ -3,7 +3,17 @@ class BooksController < ApplicationController
 	skip_before_action :require_login, only: [:index]
 
 	def index
-		@books = Book.all
+		if params[:user_id]
+			user = User.find(params[:user_id])
+			@books = user.books
+		else
+			@books = Book.all
+		end
+		
+		respond_to do |format|
+	      format.html { render :index }
+	      format.json { render json: @books}
+    	end
 		# @user_book = UserBook.new
 	end
 
