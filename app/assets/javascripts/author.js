@@ -1,5 +1,4 @@
 $( document ).ready(function() {
-	$(".field-author").hide()
 	selectAuthor()
 	newAuthor()
 });
