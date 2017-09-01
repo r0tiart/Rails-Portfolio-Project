@@ -40,9 +40,10 @@ function addBookForm(){
     var url = this.action
     var $button = $(this)
     $(this).hide()
+    $("#userNewBook").hide()
 
-    $.get(url, function(response){
-      $button.after(response)
+    $.get(url, function(bookForm){
+      $button.after(bookForm)
     }).then(function(){
       $.getScript("/assets/author")
       $.getScript("/assets/genre")
@@ -57,11 +58,17 @@ function submitNewBook(){
     var $form = this.closest("form")
     var uid = parseInt($(this).attr("uid"))
     var values = $($form).serialize() 
-    $.post(`/users/${uid}/books`, values, function(response){
-      console.log(response)
-    });
+    $.post(`/users/${uid}/books`, values, function(newBook){
+        $("#submit-NewBook").closest("form").hide()
+        $("input#addBookForm").parent().show()
+        $("#userNewBook").show()
 
+        $("#bookTitle").text(newBook["title"]);
+        $("#bookAuthor").text(newBook["author"]["name"]);
+        $("#bookGenre").text(newBook["genre"]["title"]);
+    });
   })
-}
+}   
+
 
 
