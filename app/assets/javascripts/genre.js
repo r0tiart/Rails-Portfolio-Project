@@ -7,7 +7,6 @@ $( document ).ready(function() {
 
 function selectGenre(){
 	$(".select-genre").on("click", function(e){
-		e.preventDefault()
 		$(".field-genre").show()
 		$(".field-newGenre").hide()
 
@@ -16,7 +15,6 @@ function selectGenre(){
 
 function newGenre(){
 	$(".new-genre").on("click", function(e){
-		e.preventDefault()
 		$(".field-newGenre").show()
 		$(".field-genre").hide()
 

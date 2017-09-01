@@ -38,7 +38,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
 	if @book.save
 		current_user.user_books.create(book_id: @book.id)
-		redirect_to book_path(@book)
+    	render json: @book, status: 201
 	else
 		render :new
 	end

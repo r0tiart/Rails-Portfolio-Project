@@ -54,7 +54,13 @@ function addBookForm(){
 function submitNewBook(){
   $("#submit-NewBook").on("click", function(e){
     e.preventDefault()
-    alert("hijacked")
+    var $form = this.closest("form")
+    var uid = parseInt($(this).attr("uid"))
+    var values = $($form).serialize() 
+    $.post(`/users/${uid}/books`, values, function(response){
+      console.log(response)
+    });
+
   })
 }
 

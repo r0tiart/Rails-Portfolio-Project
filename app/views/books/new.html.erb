@@ -21,7 +21,7 @@
   <%= button_tag "Select Author", type: "button", class: "select-author" %> or <%= button_tag "Create New Author", type: "button", class: "new-author"%>
 
 
-  <div class="field-author"  style="display: none;">
+  <div class="field-author" style="display: none;">
     <strong>Author:</strong><br><br>
 
     <%= f.collection_radio_buttons :author_id, Author.all, :id, :name do |b| %>
@@ -32,7 +32,7 @@
   </div> <br>
 
 
-  <div class="field-newAuthor"  style="display: none;">
+  <div class="field-newAuthor" style="display: none;">
     <strong>New Author: </strong><br>
 
     <%= f.fields_for :author_attributes do |author_form| %>
@@ -67,7 +67,7 @@
 
 
   <div class="actions"><br>
-    <%= f.submit "Create Book", id: "submit-NewBook" %>
+    <%= f.submit "Create Book", id: "submit-NewBook", uid: current_user.id %>
   </div>
 
 <% end %>
