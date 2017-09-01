@@ -63,25 +63,37 @@ function submitNewBook(){
         $("input#addBookForm").parent().show()
         $("#userNewBook").show()
 
-        $("#bookTitle").text(newBook["title"]);
-        $("#bookAuthor").text(newBook["author"]["name"]);
-        $("#bookGenre").text(newBook["genre"]["title"]);
-        var new_book = new Book(newBook["title"], newBook["author"]["name"], newBook["genre"]["title"])
-        new_book.fullBook()
+
+        
+        var new_book = new Book(newBook["title"], newBook["author"]["name"], newBook["genre"]["title"], newBook["id"])
+        $("#userNewBook").text(new_book.fullBook())
+        $("ul#books").append(`<li><a href='/books/${new_book.id}'>${new_book.titleize(new_book.title)}</a>, by: ${new_book.titleize(new_book.author)}</li>`)
 
     });
   })
 }   
 
 
-function Book(title, author, genre) {
+function Book(title, author, genre, id) {
   this.title = title;
   this.author = author;
   this.genre = genre;
+  this.id = id
 }
 
-Book.prototype.fullBook = function() {   console.log("New Book has been added: "+ this.title + ",by: " + this.author);
+Book.prototype.fullBook = function() {  return `New Book has been added to your library: ${this.title}, by: ${this.author}`;
 }
 
+Book.prototype.titleize = function(sentence) {
+    if(!sentence.split) return sentence;
+    var _titleizeWord = function(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+        },
+        result = [];
+    sentence.split(" ").forEach(function(w) {
+        result.push(_titleizeWord(w));
+    });
+    return result.join(" ");
+}
 
 

@@ -11,13 +11,12 @@
   <%= button_to "Add Book", new_user_book_path(current_user), id: "addBookForm", method: "get" if current_user == @user %>
   <br>
   <div id="userNewBook">
-  	<h6 id="bookTitle"></h6>
-	<h6 id="bookAuthor"></h6>
-	<h6 id="bookGenre"></h6>
+  
   </div>
   <br>
+    <ul id= 'books'>
         <%= render partial: "books/index", collection: currently_reading, as: :book %>     
-  
+    </ul>
   </div>
   <div class="col-md-6"><h3>Finished Books</h3>
     <%= render partial: "books/index", collection: finished_books, as: :book %>

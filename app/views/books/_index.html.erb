@@ -1,9 +1,9 @@
 <% if logged_in?%>
-  <ul>
+  
       <li><%= link_to book.title.titleize, book_path(book) %>, by: <%=book.author.name.titleize %></li>
-  </ul>  
+ 
 <% else %>
-  <ul>
+
       <li><%= book.title.titleize %>, by: <%=book.author.name.titleize %></li>
-  </ul>  
+    
 <% end %>
