@@ -1,6 +1,7 @@
 $( document ).ready(function() {
        userBooks()
        showUserBook()
+       addBookForm()
 });
 
 function userBooks(){
@@ -31,5 +32,21 @@ function showUserBook(){
         }).error(function(){ alert("No more books in list")})
   })  
 };
+
+function addBookForm(){
+  $("input#addBookForm").parent().on("click", function(e){
+    e.preventDefault()
+    var url = this.action
+    var $button = $(this)
+    $(this).hide()
+
+    $.get(url, function(response){
+      $button.after(response)
+    }).then(function(){
+      $.getScript("/assets/author")
+      $.getScript("/assets/genre")
+    })
+  })
+}
 
 

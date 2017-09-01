@@ -1,4 +1,5 @@
 $( document ).ready(function() {
+	
 	selectAuthor()
 	newAuthor()
 });
