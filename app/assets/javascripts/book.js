@@ -66,9 +66,22 @@ function submitNewBook(){
         $("#bookTitle").text(newBook["title"]);
         $("#bookAuthor").text(newBook["author"]["name"]);
         $("#bookGenre").text(newBook["genre"]["title"]);
+        var new_book = new Book(newBook["title"], newBook["author"]["name"], newBook["genre"]["title"])
+        new_book.fullBook()
+
     });
   })
 }   
+
+
+function Book(title, author, genre) {
+  this.title = title;
+  this.author = author;
+  this.genre = genre;
+}
+
+Book.prototype.fullBook = function() {   console.log("New Book has been added: "+ this.title + ",by: " + this.author);
+}
 
 
 
