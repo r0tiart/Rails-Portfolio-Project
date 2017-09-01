@@ -2,6 +2,7 @@ $( document ).ready(function() {
        userBooks()
        showUserBook()
        addBookForm()
+       submitNewBook()
 });
 
 function userBooks(){
@@ -45,7 +46,15 @@ function addBookForm(){
     }).then(function(){
       $.getScript("/assets/author")
       $.getScript("/assets/genre")
+      $.getScript("/assets/book")
     })
+  })
+}
+
+function submitNewBook(){
+  $("#submit-NewBook").on("click", function(e){
+    e.preventDefault()
+    alert("hijacked")
   })
 }
 
