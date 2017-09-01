@@ -30,7 +30,16 @@ function showUserBook(){
             $("#bookGenre").text(book["genre"]["title"]);
             // re-set the id to current on the link
             $(".userBook").attr("book_id", book["id"]);
-        }).error(function(){ alert("No more books in list")})
+        }).error(function(){ 
+          $.get(`/books/1.json`, function(book){
+
+            $("#bookTitle").text(book["title"]);
+            $("#bookAuthor").text(book["author"]["name"]);
+            $("#bookGenre").text(book["genre"]["title"]);
+            // re-set the id to current on the link
+            $(".userBook").attr("book_id", book["id"]);
+          })
+        })
   })  
 };
 
