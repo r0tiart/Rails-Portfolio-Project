@@ -1,10 +1,9 @@
 <%= render partial: 'show', locals: {book: @book} %>
 
 
-<%= link_to("Add Book", addbook_path(@book) ,method: :post) if logged_in? && user_books.exclude?(@book) %>
+<%= link_to("Add Book", addbook_path(@book), id: "originalAddBookLink" ,method: :post) if logged_in? && user_books.exclude?(@book) %>
 
 <div id= "addBookLink" style="display: none;" >
-	<%= link_to("Add Book", addbook_path(@book) ,method: :post) if logged_in? %> 
 </div>
 
 <% if logged_in? %>

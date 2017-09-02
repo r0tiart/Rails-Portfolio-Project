@@ -31,18 +31,19 @@ function showUserBook(){
 
     var nextId = parseInt($(this).attr("book_id")) + 1;
     if (!all_book_ids.includes(nextId)) nextId = 1
+
         $.get(`/books/${nextId}.json`, {new_id: nextId}).done(function(book){
-           
+            $("#originalAddBookLink").hide()
+
             $("#bookTitle").text(book["title"]);
             $("#bookAuthor").text(book["author"]["name"]);
             $("#bookGenre").text(book["genre"]["title"]);
             // re-set the id to current on the link
             $(".userBook").attr("book_id", book["id"]);
             
-            current_book_id = book["id"]
-               
-            if (user_book_ids.includes(current_book_id)) showBookMark() 
-            if (!user_book_ids.includes(current_book_id)) hideBookMark() 
+            current_book_id = book["id"];
+            if (user_book_ids.includes(current_book_id)) showBookMark(); 
+            if (!user_book_ids.includes(current_book_id)) hideBookMark(current_book_id);     
         })
   })  
 };
@@ -56,13 +57,17 @@ function hideAddBook(){
   $("#addBookLink").hide()
 }
 
-function hideBookMark(){
+function hideBookMark(id){
   $("#bookmarks").hide()
-  showAddBook()
+  showAddBook(id)
 }
 
-function showAddBook(){
+function showAddBook(id){
+
   $("#addBookLink").show()
+  $("#addBookLink").children().remove()
+  $("#addBookLink").append(`<a rel="nofollow" data-method="post" href="/addbook/${id}">Add Book</a>`)
+
 }
 
 function addBookForm(){
