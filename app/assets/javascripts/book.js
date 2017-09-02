@@ -42,14 +42,18 @@ function showUserBook(){
             $(".userBook").attr("book_id", book["id"]);
             
             current_book_id = book["id"];
-            if (user_book_ids.includes(current_book_id)) showBookMark(); 
+
+            if (user_book_ids.includes(current_book_id)) showBookMark(current_book_id); 
             if (!user_book_ids.includes(current_book_id)) hideBookMark(current_book_id);     
         })
   })  
 };
 
-function showBookMark(){
-  $("#bookmarks").show()
+function showBookMark(id){
+  $("#bookmark-container").show()
+  $("#bookmark-container").children().remove()
+  $("#bookmark-container").append(`<a id="bookmarks" href="/user_books/${id}/edit">Bookmarks</a>`)
+
   hideAddBook()
 }
 
