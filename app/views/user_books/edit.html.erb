@@ -5,7 +5,7 @@
 	<% end %>
 <% end %>
 
-<%= form_for(@user_book) do |f| %>
+<%= form_for(@user_book, url: editUserBook_path(@user_book)) do |f| %>
 	<%= f.label :page, "New Page" %>
 	<%= f.text_field :page %><br>
 	<%= f.submit "Update Bookmark"%>

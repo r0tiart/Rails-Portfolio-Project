@@ -10,8 +10,8 @@ class UserBooksController < ApplicationController
 	end
 
 	def edit 
-		@user_book = UserBook.find_by(id: params[:id])
-		@book = Book.find_by(id: @user_book.book_id)
+		@book = Book.find_by(id: params[:id])
+		@user_book = current_user.user_books.find_by(book_id: @book.id)
 	end
 
 	def update

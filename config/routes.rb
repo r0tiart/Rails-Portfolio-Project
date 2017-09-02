@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 	resources :users, only: [:new, :create, :index, :show, :update, :edit] do
 		resources :friends, only: [:index, :create, :update] #all friends
 		resources :books, only: [:new, :create, :index, :show]
-		# resources :user_books, only: [:index]
 	end
 
 	get 'users/:id/pending_friends', to: 'friends#pending_friends', as: 'pending'
@@ -16,7 +15,8 @@ Rails.application.routes.draw do
 
 	resources :books, only: [:index, :show]
 
-	resources :user_books, only: [:index, :update, :edit]
+	resources :user_books, only: [:index, :edit]
+	patch "user_books/:id" => "user_books#update", as: "editUserBook"
 	post "addbook/:id" => "user_books#create", as: "addbook"
 
 end
