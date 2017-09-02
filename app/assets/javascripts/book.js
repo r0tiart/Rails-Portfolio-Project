@@ -34,6 +34,7 @@ function showUserBook(){
 
         $.get(`/books/${nextId}.json`, {new_id: nextId}).done(function(book){
             $("#originalAddBookLink").hide()
+            $("#bookmarks").hide()
 
             $("#bookTitle").text(book["title"]);
             $("#bookAuthor").text(book["author"]["name"]);
