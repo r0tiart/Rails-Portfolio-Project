@@ -22,14 +22,22 @@ function userBooks(){
 function showUserBook(){
   $(".userBook").on("click", function(e) {
     e.preventDefault()
+    var user_book_ids = []
+    $(this).attr("user_book_ids").split(" ").forEach( (n) => { user_book_ids.push(parseInt(n)) })
+    var current_book_id = parseInt($(".userBook").attr("book_id"));
     var nextId = parseInt($(this).attr("book_id")) + 1;
-        $.get(`/books/${nextId}.json`, function(book){
-
+        $.get(`/books/${nextId}.json`, {new_id: nextId}).done(function(book){
+           
             $("#bookTitle").text(book["title"]);
             $("#bookAuthor").text(book["author"]["name"]);
             $("#bookGenre").text(book["genre"]["title"]);
             // re-set the id to current on the link
             $(".userBook").attr("book_id", book["id"]);
+            
+            current_book_id = book["id"]
+               
+            if (user_book_ids.includes(current_book_id)) showBookMark() 
+            if (!user_book_ids.includes(current_book_id)) hideBookMark() 
         }).error(function(){ 
           $.get(`/books/1.json`, function(book){
 
@@ -38,10 +46,35 @@ function showUserBook(){
             $("#bookGenre").text(book["genre"]["title"]);
             // re-set the id to current on the link
             $(".userBook").attr("book_id", book["id"]);
+ 
+            current_book_id = book["id"]
+
+            if (user_book_ids.includes(current_book_id)) showBookMark() 
+            if (!user_book_ids.includes(current_book_id)) hideBookMark() 
+              // debugger;
+
           })
         })
   })  
 };
+
+function showBookMark(){
+  $("#bookmarks").show()
+  hideAddBook()
+}
+
+function hideAddBook(){
+  $("#addBookLink").hide()
+}
+
+function hideBookMark(){
+  $("#bookmarks").hide()
+  showAddBook()
+}
+
+function showAddBook(){
+  $("#addBookLink").show()
+}
 
 function addBookForm(){
   $("input#addBookForm").parent().on("click", function(e){

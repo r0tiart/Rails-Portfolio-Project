@@ -1,16 +1,15 @@
 <%= render partial: 'show', locals: {book: @book} %>
 
 
-<%= link_to("Add Book", addbook_path(@book), method: :post) if logged_in? && user_books.exclude?(@book) %>
+<%= link_to("Add Book", addbook_path(@book) ,method: :post) if logged_in? && user_books.exclude?(@book) %>
 
-<% if favorite?(@book) %>
-	<strong>Favorite</strong>
-<% end %>
+<div id= "addBookLink" style="display: none;" >
+	<%= link_to("Add Book", addbook_path(@book) ,method: :post) if logged_in? %> 
+</div>
 
-
-<% if logged_in? && user_books.include?(@book) %>
-	<%= link_to("Bookmarks", edit_user_book_path(@user_book))%><br>
-	<%= link_to "Next", book_path(@book), class: "userBook", user_id: current_user.id, book_id: @book.id %>
+<% if logged_in? %>
+	<%= link_to("Bookmarks", edit_user_book_path(@user_book), id: "bookmarks") if user_books.include?(@book) %><br>
+	<%= link_to "Next", book_path(@book), class: "userBook", user_id: current_user.id, book_id: @book.id, user_book_ids: @user_book_ids %>
 <% end %>
 
 
