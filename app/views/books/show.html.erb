@@ -9,7 +9,7 @@
 
 <% if logged_in? %>
 	<%= link_to("Bookmarks", edit_user_book_path(@user_book), id: "bookmarks") if user_books.include?(@book) %><br>
-	<%= link_to "Next", book_path(@book), class: "userBook", user_id: current_user.id, book_id: @book.id, user_book_ids: @user_book_ids %>
+	<%= link_to "Next", book_path(@book), class: "userBook", user_id: current_user.id, book_id: @book.id, user_book_ids: @user_book_ids, all_book_ids: @all_books %>
 <% end %>
 
 

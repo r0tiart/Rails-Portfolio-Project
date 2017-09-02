@@ -22,6 +22,7 @@ class BooksController < ApplicationController
 			@book = Book.find_by(id: params[:id])
 			@user_book = UserBook.find_by(book_id: @book.id, user_id: current_user.id)
 			@user_book_ids = current_user.book_ids
+			@all_books = Book.ids
 
 		respond_to do |format|
 	      format.html { render :show }
