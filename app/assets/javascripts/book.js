@@ -12,7 +12,7 @@ function userBooks(){
         $.get(`/users/${userId}/books.json`, function(books){
           var booksTitles = ""      
           books.forEach((book) => {
-            booksTitles += `<li> ${book.title}  </li>`
+            booksTitles += `<li><a href='books/${book.id}' >${book.title}</a></li>`
           })
           $(`#userbooks-${userId}`).html(booksTitles)
         })

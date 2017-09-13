@@ -1,4 +1,4 @@
-1) Create Migrations: 
+r1) Create Migrations: 
 	a) User: - email - neeed to write tests (completed)
 			 - password digest (bcrypt)
 			 - username
